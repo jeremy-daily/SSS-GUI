@@ -175,6 +175,10 @@ class potentiometer():
         self.terminal_B_connect_button.state(['!alternate']) #Clears Check Box
         self.terminal_B_connect_button.state(['selected']) #Clears Check Box
         
+    def set_wiper_value(self,scale):
+        print(self.label,end=' ')
+        print("Wiper Position: ",end='')
+        print(self.wiper_position_value.get())
         
     
     def set_terminals(self):
@@ -199,6 +203,17 @@ class potentiometer():
         elif self.terminal_A_setting.get() == "Other":
             self.other_volt_button.config(state=tk.NORMAL)
     
+    def set_wiper_slider(self):
+        entry_value = self.other_volt_value.get()
+        #print(self.other_volt_value.config())
+        self.other_volt_value['foreground'] = "black"
+        try:
+            print(float(entry_value))
+        except ValueError:
+            #print("Not a good value")
+            self.root.bell()
+            self.other_volt_value['foreground'] = "red"
+
     def set_terminal_A_slider(self):
         entry_value = self.other_volt_value.get()
         #print(self.other_volt_value.config())
